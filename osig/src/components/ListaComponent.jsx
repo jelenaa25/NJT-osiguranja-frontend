@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PokricaService from '../services/PokricaService';
 import PredmetOsiguranjaService from '../services/PredmetOsiguranjaService';
-class ListaPokricaComponent extends Component {
+class ListaComponent extends Component {
 
     constructor(props){
 
@@ -107,4 +107,4 @@ class ListaPokricaComponent extends Component {
     }
 }
 
-export default ListaPokricaComponent;
+export default ListaComponent;
