@@ -76,7 +76,7 @@ class ListaComponent extends Component {
                             <tr>
                                 <th>ID</th>
                                 <th>Naziv</th>
-                                <th>Opis</th>
+                                <th>Napomena</th>
                                 {
                                         this.getAkcija()
 
