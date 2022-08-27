@@ -4,6 +4,7 @@ import FooterComponent from './components/FooterComponent';
 import HeaderComponent from './components/HeaderComponent';
 import ListaPokricaComponent from './components/ListaPokricaComponent';
 import PokriceSaveOrUpdateComponent from './components/PokriceCreateOrUpdateComponent';
+import PocetnaComponent from './components/PocetnaComponent';
 
 function App() {
  
@@ -16,9 +17,9 @@ function App() {
 
     <div className="container">
       <Switch>
-          <Route path='/' exact component={ListaPokricaComponent}></Route>
+          <Route path='/' exact component={PocetnaComponent}></Route>
           
-          <Route path='/pokrica' exact component={ListaPokricaComponent}></Route>
+          <Route path='/pok-or-pr/:id' exact component={ListaPokricaComponent}></Route>
           <Route path='/create-or-update-pokrice/:id'  exact component={PokriceSaveOrUpdateComponent}></Route>
          
 

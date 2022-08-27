@@ -35,7 +35,7 @@ class PokriceCreateOrUpdateComponent extends Component {
     }
     obrisiPokrice(id){
         PokricaService.obrisiPokrice(id).then(res => {
-            this.props.history.push('/pokrica');
+            this.props.history.push('/pok-or-pr/_pok');
         });
     }
     getDugmeObrisi(){
@@ -51,7 +51,7 @@ class PokriceCreateOrUpdateComponent extends Component {
         }else{
             PokricaService.promeniPokrice(pok, this.state.pokriceID);
         }
-        this.props.history.push('/pokrica');
+        this.props.history.push('/pok-or-pr/_pok');
     }
     changeNazivHandler = (event) => {
         this.setState({naziv: event.target.value})
@@ -61,7 +61,7 @@ class PokriceCreateOrUpdateComponent extends Component {
 
     }
     cancel(){
-        this.props.history.push('/pokrica');
+        this.props.history.push('/pok-or-pr/_pok');
     }
     render() {
         return (

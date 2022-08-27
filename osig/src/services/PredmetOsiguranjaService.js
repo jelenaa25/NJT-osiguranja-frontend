@@ -8,12 +8,13 @@ class PredmetOsiguranjaService{
 
     vratiSvePredmete(){
 
-        return axios.get(Pokrica_API_Base_URL);
+        return axios.get(Predmet_API_Base_URL);
 
     }
     kreirajPredmet(predmet){
-        return axios.post(Pokrica_API_Base_URL, predmet);
+        return axios.post(Predmet_API_Base_URL, predmet);
 
     }
 
 }
+export default new PredmetOsiguranjaService();
