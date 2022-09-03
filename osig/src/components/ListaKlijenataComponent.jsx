@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import KlijentService from '../services/KlijentService';
 
+
 class ListaKlijenataComponent extends Component {
     
     constructor(props){

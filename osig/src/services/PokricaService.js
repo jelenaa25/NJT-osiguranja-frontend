@@ -30,10 +30,6 @@ class PokricaService {
         return axios.put(Pokrica_API_Base_URL + '/'+id, pokrice);
     }
 
-    obrisiPokrice(id){
-        return axios.delete(Pokrica_API_Base_URL + '/'+id);
-    }
-
 }
 
 export default new PokricaService()

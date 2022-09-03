@@ -15,7 +15,7 @@ class PolisaService{
     }
 
     obrisiPolisu(id){
-        return axios.delete(Polisa_API_Base_URL+'/'+id)
+        return axios.delete(Polisa_API_Base_URL+'/'+id);
     }
 
     sacuvajPolisu(polisa){

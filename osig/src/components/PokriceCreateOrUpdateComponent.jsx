@@ -14,8 +14,6 @@ class PokriceCreateOrUpdateComponent extends Component {
         this.changeNazivHandler = this.changeNazivHandler.bind(this);
         this.changeOpisHandler = this.changeOpisHandler.bind(this);
         this.sacuvajPokrice = this.sacuvajPokrice.bind(this);
-        this.obrisiPokrice = this.obrisiPokrice.bind(this);
-        this.getDugmeObrisi = this.getDugmeObrisi.bind(this);
     }
 
     componentDidMount(){
@@ -33,25 +31,31 @@ class PokriceCreateOrUpdateComponent extends Component {
         }else return <h3 className='text-center'>Evidencija pokrica</h3>
 
     }
-    obrisiPokrice(id){
-        PokricaService.obrisiPokrice(id).then(res => {
-            this.props.history.push('/pok-or-pr/_pok');
-        });
-    }
-    getDugmeObrisi(){
-        if(this.state.pokriceID !== '_add')
-        return <button  style={{marginLeft : "10px"}} onClick={() => this.obrisiPokrice(this.state.pokriceID)} className='btn btn-danger'>Obrisi</button> 
-    }
+    
     sacuvajPokrice = (e) => {
         e.preventDefault();
+        document.getElementById("n").innerHTML = "Naziv je obavezno polje.";
         let pok  = {naziv: this.state.naziv, napomena: this.state.napomena};
         console.log('pok =>'+ JSON.stringify(pok));
+        if(this.validateNaziv(this.state.naziv) == false) return;
         if(this.state.pokriceID === '_add'){
-             PokricaService.kreirajPokrice(pok);
+             PokricaService.kreirajPokrice(pok).then((res)=>{
+                this.props.history.push('/pok-or-pr/_pok');
+            });
         }else{
-            PokricaService.promeniPokrice(pok, this.state.pokriceID);
+            PokricaService.promeniPokrice(pok, this.state.pokriceID).then((res)=>{
+                this.props.history.push('/pok-or-pr/_pok');
+                });
         }
-        this.props.history.push('/pok-or-pr/_pok');
+      
+    }
+    validateNaziv(naziv){
+        if(naziv.length !== 0){
+            return true;
+        }else{
+            document.getElementById("n").innerHTML = "Naziv je obavezno polje.";
+            return false;
+        }
     }
     changeNazivHandler = (event) => {
         this.setState({naziv: event.target.value})
@@ -79,6 +83,7 @@ class PokriceCreateOrUpdateComponent extends Component {
                                         <label>Naziv: </label>
                                         <input placeholder='Naziv' name='naziv' className='form-control' value={this.state.naziv} onChange = {this.changeNazivHandler} />
                                     </div>
+                                    <p id="n" className='text-danger'></p>
 
                                     <div className='form-group'>
                                         <label>Napomena: </label>
@@ -86,10 +91,6 @@ class PokriceCreateOrUpdateComponent extends Component {
                                     </div>
 
                                     <button className='btn btn-success' onClick={this.sacuvajPokrice}>Sacuvaj</button>
-                                    {
-                                        this.getDugmeObrisi()
-
-                                    }
                                     <button className='btn btn-danger' onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Otkazi</button>
                                 </form>
                             </div>
