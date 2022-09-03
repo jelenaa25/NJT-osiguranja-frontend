@@ -342,6 +342,20 @@ class UcitanaPolisaComponent extends Component {
             return <th>Akcija</th>;
         }
     }
+
+    getPP(pokid, prid){
+        let npokrica = 'kk';
+        let npred = 'lj';
+        for(let i = 0; i < this.state.pokrica.length; i++){
+            if(this.state.pokrica[i].sifra == pokid) npokrica = this.state.pokrica[i].naziv;
+        }
+        for(let i = 0; i < this.state.predmeti.length; i++){
+            if(this.state.predmeti[i].sifra == prid) npred = this.state.predmeti[i].naziv;
+        }
+        return <><td>{npred}</td>
+        <td>{npokrica}</td></>
+    }
+
     render() {
         return (
             <div>
@@ -440,8 +454,9 @@ class UcitanaPolisaComponent extends Component {
                                     <tr key={stavka.rb}>
                                        
                                         <td>{stavka.rb}</td>
-                                        <td>{stavka.predmetOsiguranjaID}</td>
-                                        <td>{stavka.pokriceID}</td>
+                                        {
+                                            this.getPP(stavka.pokriceID, stavka.predmetOsiguranjaID)
+                                        }
                                        <td>{stavka.sumaOsiguranja}</td> 
                                        <td>{stavka.procenatAmortizacije}</td>
                                        <td>{stavka.premija}</td>
